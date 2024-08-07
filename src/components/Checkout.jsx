@@ -20,13 +20,14 @@ export default function Checkout() {
   const cartCtx = useContext(CartContext);
   const userProgressCtx = useContext(UserProgressContext);
 
+  //   } = useHttp('http://localhost:3000/orders', requestConfig);
   const {
     data,
     isLoading: isSending,
     error,
     sendRequest,
-    clearData
-  } = useHttp('http://localhost:3000/orders', requestConfig);
+    clearData,
+  } = useHttp('backend/data/orders.json', requestConfig);
 
   const cartTotal = cartCtx.items.reduce(
     (totalPrice, item) => totalPrice + item.quantity * item.price,
@@ -61,7 +62,7 @@ export default function Checkout() {
 
   let actions = (
     <>
-      <Button type="button" textOnly onClick={handleClose}>
+      <Button type='button' textOnly onClick={handleClose}>
         Close
       </Button>
       <Button>Submit Order</Button>
@@ -84,7 +85,7 @@ export default function Checkout() {
           We will get back to you with more details via email within the next
           few minutes.
         </p>
-        <p className="modal-actions">
+        <p className='modal-actions'>
           <Button onClick={handleFinish}>Okay</Button>
         </p>
       </Modal>
@@ -97,17 +98,17 @@ export default function Checkout() {
         <h2>Checkout</h2>
         <p>Total Amount: {currencyFormatter.format(cartTotal)}</p>
 
-        <Input label="Full Name" type="text" id="name" />
-        <Input label="E-Mail Address" type="email" id="email" />
-        <Input label="Street" type="text" id="street" />
-        <div className="control-row">
-          <Input label="Postal Code" type="text" id="postal-code" />
-          <Input label="City" type="text" id="city" />
+        <Input label='Full Name' type='text' id='name' />
+        <Input label='E-Mail Address' type='email' id='email' />
+        <Input label='Street' type='text' id='street' />
+        <div className='control-row'>
+          <Input label='Postal Code' type='text' id='postal-code' />
+          <Input label='City' type='text' id='city' />
         </div>
 
-        {error && <Error title="Failed to submit order" message={error} />}
+        {/*error && <Error title='Failed to submit order' message={error} />*/}
 
-        <p className="modal-actions">{actions}</p>
+        <p className='modal-actions'>{actions}</p>
       </form>
     </Modal>
   );
