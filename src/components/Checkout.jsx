@@ -27,7 +27,7 @@ export default function Checkout() {
     error,
     sendRequest,
     clearData,
-  } = useHttp('backend/data/orders.json', requestConfig);
+  } = useHttp('data/orders.json', requestConfig);
 
   const cartTotal = cartCtx.items.reduce(
     (totalPrice, item) => totalPrice + item.quantity * item.price,
